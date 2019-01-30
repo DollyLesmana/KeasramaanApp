@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapernaum</title>
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/styles.min.css">
+<link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+		<nav class="nav" style="margin-left:390px;">
+			<a class="navbar-brand" href="/">Keasramaan Go-Respect!!!</a>
+		</nav>
+		<div style="margin-left:470px;">
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link" href="/pengumuman">Pengumuman</a></li>
+				<li class="nav-item"><a class="nav-link" href="/perizinan">Perizinan</a></li>
+				<li>
+					<div class="dropdown">
+						<button class="btn btn-link dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Asrama</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="/antiokhia">Anthiokia</a>
+							<a class="dropdown-item" href="/betfage">Betfage</a> 
+							<a class="dropdown-item" href="/kapernaum">Kapernaum</a> 
+							<a class="dropdown-item" href="/mahanaim">Mahanaim</a> 
+							<a class="dropdown-item" href="/mamre">Mamre</a> 
+							<a class="dropdown-item" href="/nazareth">Nazareth</a> 
+							<a class="dropdown-item" href="/silo">Silo</a> 
+							<a class="dropdown-item" href="/pniel">Pniel</a>
+						</div>
+					</div>
+				</li>`
+				<li class="nav-item" style="margin-left:5px"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></li>				
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<article>
+			<h1><b>Kapernaum</b></h1>
+			<figure>
+				<a href="#"><img src="/img/kapernaum.jpeg" width="854" height="480"></a>
+			</figure>
+			<h5>
+				<i>Kapernaum adalah sebuah tempat tinggal di tepi laut Galilea. 
+				Di dalam Alkitab tempat ini merupakan rumah dari sejumlah murid Yesus. 
+				Pemberian nama asrama ini adalah dengan harapan semua penghuninya menjadi murid yesus yang baik</i>
+			</h5>
+		
+		</article>
+		</br></br></br>
+		
+			<h2>Jadwal Piket</h2>
+			
+			<table class="table table-striped">
+				<tr>
+					<th style="width: 200px;">Judul</th>
+					<th style="width: 200px;">asrama</th>
+					<th style="width: 200px;">Waktu</th>
+					<th style="width: 200px;">Action</th>
+				</tr>
+				<tr th:each="pikets : ${piket}">
+					<td th:text="${pikets.nama}"></td>
+					<td th:text="${asramaService.getId(pikets.asrama).nama_asrama}"></td>
+					<td th:text="${pikets.tanggal}"></td>
+					<td><a th:href="${'/piket/detail/' +pikets.id}">
+							<button method=RequestMethod.GET>
+								<i class="far fa-eye"></i>
+							</button>
+					</a> <a th:href="${'/piket/edit/' +pikets.id}">
+							<button method=RequestMethod.GET>
+								<i class="far fa-edit"></i>
+							</button>
+					</a> <a th:href="${'/piket/hapus/' +pikets.id}">
+							<button type="submit" method=RequestMethod.GET>
+								<i class="fas fa-trash"></i>
+							</button>
+					</a></td>
+				</tr>
+			</table>
+		
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

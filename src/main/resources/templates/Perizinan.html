@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Perizinan</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/styles.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+		<nav class="nav" style="margin-left:390px;">
+			<a class="navbar-brand" href="/">Keasramaan Go-Respect!!!</a>
+		</nav>
+		<div style="margin-left:470px;">
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link" href="/pengumuman">Pengumuman</a></li>
+				<li class="nav-item"><a class="nav-link" href="/perizinan">Perizinan</a></li>
+				<li>
+					<div class="dropdown">
+						<button class="btn btn-link dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Asrama</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="/antiokhia">Anthiokia</a>
+							<a class="dropdown-item" href="/betfage">Betfage</a> 
+							<a class="dropdown-item" href="/kapernaum">Kapernaum</a> 
+							<a class="dropdown-item" href="/mahanaim">Mahanaim</a> 
+							<a class="dropdown-item" href="/mamre">Mamre</a> 
+							<a class="dropdown-item" href="/nazareth">Nazareth</a> 
+							<a class="dropdown-item" href="/silo">Silo</a> 
+							<a class="dropdown-item" href="/pniel">Pniel</a>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item" style="margin-left:5px"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></li>				
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>
+			<b>Perizinan</b>
+		</h1>
+		<!-- Logika nya, jika ada data pada tabel maka akan ditampilkan-->
+		<div th:if="${not #lists.isEmpty(perizinan)}">
+			<br> 
+			<br>
+			<table class="table table-striped">
+				<tr>
+					<th>Jenis</th>
+					<th>Berangkat</th>
+					<th>Pulang</th>
+					<th>Tujuan</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+				
+				<tr th:each="perijinann : ${perizinan}")>
+																<!-- <td th:each="i: ${#numbers.sequence(1,perizinan.size())}"></td>
+																<td th:text="${i}"></td>
+																<td th:each" ${#numbers.sequence(1,100,1)}"></td> -->
+					<td th:text="${perijinann.jenis}"></td>
+					<td th:text="${perijinann.berangkat}"></td>
+					<td th:text="${perijinann.pulang}"></td>
+					<td th:text="${perijinann.tujuan}"></td>
+					<td th:text="${perijinann.status}"></td>
+					
+					<td>
+						<a th:href="${'/perizinan/detail/' +perijinann.id}">
+							<button method=RequestMethod.GET>
+								<i class="far fa-eye"></i>
+							</button>
+						</a>
+						<a th:href="${'/perizinan/edit/' +perijinann.id}">
+							<button method=RequestMethod.GET>
+								<i class="far fa-edit"></i>
+							</button>
+						</a>
+						<a sec:authorize="hasAuthority('ADMIN')" th:href="${'/perizinan/hapus/' +perijinann.id}">
+							<button type="submit" method=RequestMethod.GET>
+								<i class="fas fa-trash"></i>
+							</button>
+						</a>
+					</td>
+				</tr>
+
+				<!-- Banyak data nya array, maka menggunakan for each dari thymeleaf -->
+
+			</table>
+		</div>
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">Perizinan</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="/perizinan/create">Izin Bermalam</a>
+				<a class="dropdown-item" href="/perizinan/create">Izin Keluar</a>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

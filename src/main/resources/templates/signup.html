@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>home</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<main role="main">
+    <div class="container-fluid mt-5">
+        <form class="jumbotron form-signup" method="post" role="form" th:action="@{/auth/signup}" th:object="${user}">
+            <div class="text-center">
+                <img class="mb-4 text-center" th:src="@{/img/brand.png}" alt="" width="72"
+                     height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Daftar untuk menggunakan SIKDP</h1>
+            </div>
+            <hr>
+            <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
+            <div class="form-control-feedback">
+                <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}"></span>
+            </div>
+            <div class="form-control-feedback">
+                <span class="text-danger align-middle" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h6>Data akun</h6>
+                    <label for="inputUsername" class="sr-only">Username</label>
+                    <input th:field="*{username}" type="text"
+                           id="inputUsername" class="form-control top" placeholder="Username"
+                           required>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input th:field="*{email}"
+                           type="email" id="inputEmail" class="form-control inside"
+                           placeholder="Email address" required>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input th:field="*{password}" type="password"
+                           id="inputPassword" class="form-control inside"
+                           placeholder="Password" required>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                    <p class="mt-4 text-center">Already have account?</p>
+                    <a class="btn btn-lg btn-info btn-block" th:href="@{/auth/login}">Sign in</a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>
